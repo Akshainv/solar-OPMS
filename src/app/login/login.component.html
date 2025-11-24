@@ -1,6 +1,7 @@
-<!-- login.component.html (professionally redesigned) -->
+<!-- login.component.html (UI-only version, no authentication bindings) -->
 <div class="container">
   <div class="login-wrapper">
+
     <!-- Left Section - Branding -->
     <div class="brand-section">
       <div class="brand-content">
@@ -23,13 +24,7 @@
           <p class="form-subtitle">Sign in to continue to your account</p>
         </div>
 
-        <div *ngIf="errorMessage" class="alert alert-error">
-          <i class="fas fa-exclamation-circle"></i> 
-          <span>{{ errorMessage }}</span>
-          <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
-        </div>
-
-        <form class="login-form" (ngSubmit)="login()">
+        <form class="login-form">
           <div class="form-group">
             <label for="email">Email Address</label>
             <div class="input-wrapper">
@@ -38,8 +33,6 @@
                 type="email" 
                 id="email" 
                 placeholder="Enter your email" 
-                [(ngModel)]="email" 
-                name="email" 
                 required>
             </div>
           </div>
@@ -52,8 +45,6 @@
                 type="password" 
                 id="password" 
                 placeholder="Enter your password" 
-                [(ngModel)]="password" 
-                name="password" 
                 required>
             </div>
           </div>
@@ -62,7 +53,7 @@
             <label for="role">Select Role</label>
             <div class="input-wrapper">
               <i class="fas fa-user-tag input-icon"></i>
-              <select id="role" [(ngModel)]="role" name="role" required>
+              <select id="role" required>
                 <option value="" disabled selected>Choose your role</option>
                 <option value="admin">Admin</option>
                 <option value="employee">Employee</option>
@@ -76,7 +67,9 @@
             <i class="fas fa-arrow-right"></i>
           </button>
         </form>
+
       </div>
     </div>
+
   </div>
 </div>
