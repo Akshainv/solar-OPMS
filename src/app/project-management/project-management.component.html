@@ -1,0 +1,190 @@
+<app-admin-sidebar></app-admin-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    <!-- Content Section -->
+    <section class="content-section active">
+        <!-- Success/Error Messages -->
+        <div *ngIf="successMessage" class="alert alert-success">
+            <i class="fas fa-check-circle"></i> {{ successMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+        <div *ngIf="opErrorMessage" class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i> {{ opErrorMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+        <div *ngIf="loadErrorMessage && !opErrorMessage" class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i> {{ loadErrorMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+
+        <!-- Add/Edit Project Form -->
+        <div class="form-card">
+            <h3 class="panel-title">
+                <i class="fas fa-project-diagram"></i> 
+                {{ isEditMode ? 'Edit Project' : 'Add New Project' }}
+            </h3>
+          
+            <form class="assignment-form" (ngSubmit)="isEditMode ? updateProject() : addProject()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectName"><i class="fas fa-briefcase"></i> Project Name *</label>
+                        <select id="projectName" [(ngModel)]="projectName" name="projectName" required>
+                            <option value="" disabled selected>Select project type</option>
+                            <option value="On Grid">On Grid</option>
+                            <option value="Off Grid">Off Grid</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Inverter">Inverter</option>
+                            <option value="Solar Inverter">Solar Inverter</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectId"><i class="fas fa-hashtag"></i> Project ID *</label>
+                        <input type="text" id="projectId" placeholder="Enter unique project ID"
+                               [(ngModel)]="projectId" name="projectId" required [disabled]="isEditMode">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="siteLocation"><i class="fas fa-map-marker-alt"></i> Site Location *</label>
+                        <input type="text" id="siteLocation" placeholder="Enter site location"
+                               [(ngModel)]="siteLocation" name="siteLocation" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate"><i class="fas fa-calendar-alt"></i> Start Date *</label>
+                        <input type="date" id="startDate"
+                               [(ngModel)]="startDate" name="startDate" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="deadline"><i class="fas fa-calendar-check"></i> Deadline *</label>
+                        <input type="date" id="deadline"
+                               [(ngModel)]="deadline" name="deadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ksebConsumerNumber"><i class="fas fa-id-card"></i> KSEB Consumer Number *</label>
+                        <input type="text" id="ksebConsumerNumber" placeholder="e.g., 45464xxxxxx777"
+                               [(ngModel)]="ksebConsumerNumber" name="ksebConsumerNumber" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ksebSection"><i class="fas fa-building"></i> KSEB Section *</label>
+                        <input type="text" id="ksebSection" placeholder="e.g., Vytila, Thrikkakara"
+                               [(ngModel)]="ksebSection" name="ksebSection" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity"><i class="fas fa-bolt"></i> Capacity (KW/Watts) *</label>
+                        <input type="text" id="capacity" placeholder="Enter capacity (e.g., 5KW, 5000W)"
+                               [(ngModel)]="capacity" name="capacity" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="type"><i class="fas fa-tags"></i> Type *</label>
+                        <select id="type" [(ngModel)]="type" name="type" required>
+                            <option value="" disabled selected>Select type</option>
+                            <option value="Subsidy">Subsidy</option>
+                            <option value="Non Subsidy">Non Subsidy</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfCommissioning"><i class="fas fa-calendar-day"></i> Date of Commissioning *</label>
+                        <input type="date" id="dateOfCommissioning"
+                               [(ngModel)]="dateOfCommissioning" name="dateOfCommissioning" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectDescription"><i class="fas fa-align-left"></i> Project Description</label>
+                    <textarea id="projectDescription" placeholder="Enter project description (optional)"
+                              rows="3" [(ngModel)]="projectDescription" name="projectDescription"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <i [class]="isEditMode ? 'fas fa-save' : 'fas fa-plus-circle'"></i> 
+                        {{ isEditMode ? 'Update Project' : 'Add Project' }}
+                    </button>
+                    <button *ngIf="isEditMode" type="button" class="cancel-btn" (click)="cancelEdit()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Project List Table -->
+        <div class="table-card">
+            <h3 class="panel-title"><i class="fas fa-list"></i> Project List</h3>
+          
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag"></i> Project ID</th>
+                            <th><i class="fas fa-briefcase"></i> Project Name</th>
+                            <th><i class="fas fa-map-marker-alt"></i> Location</th>
+                            <th><i class="fas fa-bolt"></i> Capacity</th>
+                            <th><i class="fas fa-tags"></i> Type</th>
+                            <th><i class="fas fa-calendar-alt"></i> Start Date</th>
+                            <th><i class="fas fa-cogs"></i> Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let project of projects; let i = index">
+                            <td>{{ project.projectId }}</td>
+                            <td>{{ project.projectName }}</td>
+                            <td>{{ project.siteLocation }}</td>
+                            <td>{{ project.capacity }}</td>
+                            <td>
+                                <span class="status-badge" [ngClass]="project.type === 'Subsidy' ? 'completed' : 'in-progress'">
+                                    {{ project.type }}
+                                </span>
+                            </td>
+                            <td>{{ project.startDate | date: 'dd-MM-yyyy' }}</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit-btn" (click)="editProject(project)" title="Edit Project">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn" (click)="deleteProject(project)" title="Delete Project">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr *ngIf="projects.length === 0 && !isLoading">
+                            <td colspan="7" style="text-align: center;">No projects found. Add your first project above.</td>
+                        </tr>
+                        <tr *ngIf="isLoading">
+                            <td colspan="7" style="text-align: center;">
+                                <i class="fas fa-spinner fa-spin"></i> Loading projects...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+            <div class="pagination-container" *ngIf="projects.length > 0">
+                <div class="pagination-controls">
+                    <button class="pagination-btn" disabled>
+                        <i class="fas fa-angle-left"></i>
+                    </button>
+                    <div class="pagination-pages">
+                        <button class="pagination-page active">1</button>
+                        <button class="pagination-page">2</button>
+                        <button class="pagination-page">3</button>
+                    </div>
+                    <button class="pagination-btn">
+                        <i class="fas fa-angle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

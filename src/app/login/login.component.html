@@ -1,0 +1,82 @@
+<!-- login.component.html (professionally redesigned) -->
+<div class="container">
+  <div class="login-wrapper">
+    <!-- Left Section - Branding -->
+    <div class="brand-section">
+      <div class="brand-content">
+        <div class="logo-animated">☀</div>
+        <h1 class="brand-title">Solar Operations</h1>
+        <p class="brand-subtitle">Management System</p>
+        <div class="decorative-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section - Login Form -->
+    <div class="form-section">
+      <div class="form-container">
+        <div class="form-header">
+          <h2 class="form-title">Welcome Back</h2>
+          <p class="form-subtitle">Sign in to continue to your account</p>
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-error">
+          <i class="fas fa-exclamation-circle"></i> 
+          <span>{{ errorMessage }}</span>
+          <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+
+        <form class="login-form" (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope input-icon"></i>
+              <input 
+                type="email" 
+                id="email" 
+                placeholder="Enter your email" 
+                [(ngModel)]="email" 
+                name="email" 
+                required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input 
+                type="password" 
+                id="password" 
+                placeholder="Enter your password" 
+                [(ngModel)]="password" 
+                name="password" 
+                required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Select Role</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user-tag input-icon"></i>
+              <select id="role" [(ngModel)]="role" name="role" required>
+                <option value="" disabled selected>Choose your role</option>
+                <option value="admin">Admin</option>
+                <option value="employee">Employee</option>
+                <option value="client">Client</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="login-btn">
+            <span>login</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

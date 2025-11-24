@@ -1,0 +1,141 @@
+<app-admin-sidebar></app-admin-sidebar>
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    
+    <!-- Content Section -->
+    <section class="content-section active">
+        <!-- Success/Error Messages -->
+        <div *ngIf="successMessage" class="alert alert-success">
+            <i class="fas fa-check-circle"></i> {{ successMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+        <div *ngIf="opErrorMessage" class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i> {{ opErrorMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+        <div *ngIf="loadErrorMessage && !opErrorMessage" class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i> {{ loadErrorMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+<!-- Add New Client Form -->
+<div class="form-card">
+    <h3 class="panel-title"><i class="fas fa-user-plus"></i> Add New Client</h3>
+   
+    <form class="assignment-form" (ngSubmit)="addClient()">
+        <!-- CLIENT INFORMATION SECTION -->
+        <div class="section-header">
+            <i class="fas fa-user-circle"></i> Client Information
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="clientName"><i class="fas fa-user"></i> Client Name *</label>
+                <input type="text" id="clientName" placeholder="Enter client full name"
+                       [(ngModel)]="clientName" name="clientName" required>
+            </div>
+
+            <!-- ⭐ Newly Added Client ID Field -->
+            <div class="form-group">
+                <label for="clientId"><i class="fas fa-id-card"></i> Client ID</label>
+                <input type="text" id="clientId" placeholder="Auto-generated or enter manually"
+                       [(ngModel)]="clientId" name="clientId">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="contactNumber"><i class="fas fa-phone"></i> Contact Number *</label>
+                <input type="tel" id="contactNumber" placeholder="Enter contact number"
+                       [(ngModel)]="contactNumber" name="contactNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="clientEmail"><i class="fas fa-envelope"></i> Email (Login ID) *</label>
+                <input type="email" id="clientEmail" placeholder="Assign a unique email"
+                       [(ngModel)]="clientEmail" name="clientEmail" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="clientPassword"><i class="fas fa-lock"></i> Password *</label>
+                <input type="password" id="clientPassword" placeholder="Assign a password"
+                       [(ngModel)]="clientPassword" name="clientPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="landmark"><i class="fas fa-map-pin"></i> Landmark</label>
+                <input type="text" id="landmark" placeholder="Enter nearby landmark"
+                       [(ngModel)]="landmark" name="landmark">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="googleMapLink"><i class="fas fa-map-marked-alt"></i> Google Map Link</label>
+                <input type="url" id="googleMapLink" placeholder="Paste Google Maps link"
+                       [(ngModel)]="googleMapLink" name="googleMapLink">
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-user-plus"></i> Add Client
+        </button>
+    </form>
+</div>
+
+
+        <!-- Client List Table -->
+        <div class="table-card">
+            <h3 class="panel-title"><i class="fas fa-list"></i> Client List</h3>
+           
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-id-badge"></i> ID</th>
+                            <th><i class="fas fa-user"></i> Client Name</th>
+                            <th><i class="fas fa-envelope"></i> Email</th>
+                            <th><i class="fas fa-phone"></i> Contact</th>
+                            <th><i class="fas fa-map-pin"></i> Landmark</th>
+                            <th><i class="fas fa-cogs"></i> Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of clients; let i = index">
+                            <td>C{{ (i + 1).toString().padStart(3, '0') }}</td>
+                            <td>{{ client.name }}</td>
+                            <td>{{ client.email }}</td>
+                            <td>{{ client.contactNumber }}</td>
+                            <td>{{ client.landmark || 'N/A' }}</td>
+                            <td>
+                                <button class="action-btn view-btn"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="action-btn delete-btn" (click)="deleteClient(client._id)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="clients.length === 0">
+                            <td colspan="6" style="text-align: center;">No clients found. Add your first client above.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Centered Pagination -->
+            <div class="pagination-container" *ngIf="clients.length > 0">
+                <div class="pagination-controls">
+                    <button class="pagination-btn" disabled>
+                        <i class="fas fa-angle-left"></i>
+                    </button>
+                    <div class="pagination-pages">
+                        <button class="pagination-page active">1</button>
+                        <button class="pagination-page">2</button>
+                        <button class="pagination-page">3</button>
+                    </div>
+                    <button class="pagination-btn">
+                        <i class="fas fa-angle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

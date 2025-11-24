@@ -1,0 +1,66 @@
+<!-- employee-dashboard.component.html -->
+<app-employee-sidebar></app-employee-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+
+  <!-- Dashboard Section -->
+  <section id="dashboard" class="content-section active">
+    <!-- Overview Cards -->
+    <div class="overview-cards">
+      <div class="stat-card">
+        <div class="stat-icon assigned-icon"><i class="fas fa-tasks"></i></div>
+        <div class="stat-info">
+          <h3 class="stat-value">12</h3>
+          <p class="stat-label">Assigned Tasks</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon pending-icon"><i class="fas fa-hourglass-half"></i></div>
+        <div class="stat-info">
+          <h3 class="stat-value">5</h3>
+          <p class="stat-label">Pending Tasks</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon completed-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="stat-info">
+          <h3 class="stat-value">7</h3>
+          <p class="stat-label">Completed</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel">
+      <h3 class="panel-title"><i class="fas fa-bell"></i> Recent Notifications</h3>
+      <div class="notification-list">
+        <div class="notification-item">
+          <span class="notif-icon"><i class="fas fa-info-circle"></i></span>
+          <div class="notif-content">
+            <p class="notif-text">New Task Assigned - Solar panel installation at Green Valley Complex</p>
+            <span class="notif-time"><i class="far fa-clock"></i> 2 hours ago</span>
+          </div>
+        </div>
+
+        <div class="notification-item">
+          <span class="notif-icon"><i class="fas fa-exclamation-triangle"></i></span>
+          <div class="notif-content">
+            <p class="notif-text">Deadline Approaching - Task #1024 due in 2 days</p>
+            <span class="notif-time"><i class="far fa-clock"></i> 5 hours ago</span>
+          </div>
+        </div>
+
+        <div class="notification-item">
+          <span class="notif-icon"><i class="fas fa-check-circle"></i></span>
+          <div class="notif-content">
+            <p class="notif-text">Task Approved - Your update for Task #1018 has been approved</p>
+            <span class="notif-time"><i class="far fa-clock"></i> 1 day ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

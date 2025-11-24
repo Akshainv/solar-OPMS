@@ -1,0 +1,59 @@
+
+<!-- Header -->
+<header class="header">
+    <div class="header-content">
+        <div class="page-title-section">
+            <h1 class="page-title"> Dashboard Overview</h1>
+        </div>
+    </div>
+    <div class="user-info">
+        <span class="welcome-text">Welcome, john doe</span>
+        <div class="user-avatar">JD</div>
+    </div>
+</header>
+
+
+
+<!-- src/app/employee-sidebar/employee-sidebar.component.html -->
+<div class="sidebar" id="sidebar">
+  <!-- Sidebar Header -->
+  <div class="sidebar-header">
+    <div class="logo-small"><i class="fas fa-sun"></i></div>
+    <h3 class="sidebar-title">Solar OMS</h3>
+
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+    <!-- Main Section -->
+    <span class="nav-section">Main</span>
+
+    <a routerLink="/employee-dashboard" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="nav-text">Dashboard</span>
+    </a>
+
+    <a routerLink="/my-tasks" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-tasks"></i></span>
+      <span class="nav-text">My Tasks</span>
+    </a>
+
+    <a routerLink="/task-updates" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-sync-alt"></i></span>
+      <span class="nav-text">Task Updates</span>
+    </a>
+
+    <a routerLink="/notifications" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-bell"></i></span>
+      <span class="nav-text">Notifications</span>
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <div class="sidebar-footer">
+    <a href="#" class="logout-link">
+      <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+      <span class="nav-text">Logout</span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<app-admin-sidebar></app-admin-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-group">
+                    <label><i class="fas fa-search"></i> Search by Project ID or Name</label>
+                    <input type="text" id="projectSearch" placeholder="Enter Project ID (e.g., #1043) or Project Name...">
+                </div>
+                <button class="search-btn"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+
+        <!-- Projects Table -->
+        <div class="projects-panel">
+            <div class="panel-header">
+                <h3 class="panel-title"><i class="fas fa-list"></i> Project Details</h3>
+            </div>
+
+            <div class="table-responsive">
+                <table class="projects-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag"></i> Project ID</th>
+                            <th><i class="fas fa-user"></i> Client Name</th>
+                            <th><i class="fas fa-phone"></i> Contact</th>
+                            <th><i class="fas fa-user-tie"></i> Employee</th>
+                            <th><i class="fas fa-map-marker-alt"></i> Site Location</th>
+                            <th><i class="fas fa-info-circle"></i> Status</th>
+                            <th><i class="fas fa-calendar"></i> Deadline</th>
+                            <th><i class="fas fa-cog"></i> Work Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let project of projects">
+                            <td><span class="project-id">{{ project.id }}</span></td>
+                            <td><span class="client-name">{{ project.clientName }}</span></td>
+                            <td><span class="client-contact"><i class="fas fa-phone"></i> {{ project.clientContact }}</span></td>
+                            <td><span class="employee-name">{{ project.employeeName }}</span></td>
+                            <td>{{ project.siteLocation }}</td>
+                            <td>
+                                <span [class]="'status-badge ' + getStatusClass(project.status)">
+                                    <i [class]="'fas ' + getStatusIcon(project.status)"></i> {{ project.status }}
+                                </span>
+                            </td>
+                            <td>{{ project.deadline }}</td>
+                            <td>
+                                <button class="action-btn view-btn" 
+                                        (click)="viewWorkProgress(project.id)" 
+                                        title="View Work Progress Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Component -->
+            <div class="pagination-container">
+                <button class="pagination-btn" id="prevPageProjects" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <div class="pagination-pages">
+                    <button class="pagination-page active">1</button>
+                    <button class="pagination-page">2</button>
+                    <button class="pagination-page">3</button>
+                    <button class="pagination-page">4</button>
+                    <button class="pagination-page">5</button>
+                </div>
+                <button class="pagination-btn" id="nextPageProjects">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+       

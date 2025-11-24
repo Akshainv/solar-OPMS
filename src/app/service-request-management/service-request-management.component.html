@@ -1,0 +1,64 @@
+<!-- service-request-management.component.html -->
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="main-content" id="mainContent">
+    
+
+    <div class="content-section active">
+        <div class="notifications-header">
+            <h3 class="panel-title">
+                <i class="fas fa-tools"></i> Unread Requests
+            </h3>
+            <div class="notification-actions">
+                <button class="action-btn mark-all-btn">
+                    <i class="fas fa-check-double"></i> Mark All as Read
+                </button>
+            </div>
+        </div>
+
+        <div class="notifications-container">
+            <div class="notification-card unread" *ngFor="let request of unreadRequests">
+                <div class="notification-icon task-icon">
+                    <i class="fas {{ getIssueTypeIcon(request.issueType) }}"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-header-row">
+                        <h3 class="notification-title">Service Request #{{ request.id }}</h3>
+                        <span class="unread-dot"></span>
+                    </div>
+                    <p class="notification-message">
+                        <strong>{{ request.clientName }}</strong> - {{ request.issueType }}<br>
+                        Project: <strong>#{{ request.projectId }} - {{ request.projectName }}</strong><br>
+                        {{ request.description }}
+                    </p>
+                    <div class="notification-meta">
+                        <span class="notification-time">
+                            <i class="far fa-clock"></i> {{ request.submittedDate }}
+                        </span>
+                        <span class="notification-category" [ngClass]="getStatusClass(request.status)">
+                            <i class="fas fa-tag"></i> {{ request.status }}
+                        </span>
+                    </div>
+                    <div class="notification-actions-row">
+                        <select class="status-select" 
+                                [value]="request.status" 
+                                (change)="updateStatus(request, $any($event.target).value)">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                        <button class="notif-btn secondary-btn" (click)="markAsRead(request)">
+                            <i class="fas fa-check"></i> Mark as Read
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-state" *ngIf="unreadCount === 0">
+            <i class="fas fa-check-circle"></i>
+            <h3>All Caught Up!</h3>
+            <p>No unread service requests at the moment</p>
+        </div>
+    </div>
+</div>

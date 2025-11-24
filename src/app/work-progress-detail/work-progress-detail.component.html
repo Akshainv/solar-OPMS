@@ -1,0 +1,411 @@
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="main-content" id="mainContent">
+    <!-- Content Section -->
+    <section class="content-section active">
+        <!-- Back Button -->
+        <div class="back-navigation">
+            <button class="back-btn" (click)="goBack()">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </button>
+        </div>
+
+        <!-- Project Info Card -->
+        <div class="project-info-card" *ngIf="project">
+            <div class="project-info-header">
+                <div class="project-main-info">
+                    <h2 class="project-id-title">{{ project.id }}</h2>
+                    <div class="project-details-grid">
+                        <div class="detail-item">
+                            <i class="fas fa-user"></i>
+                            <span class="detail-label">Client:</span>
+                            <span class="detail-value">{{ project.clientName }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span class="detail-label">Contact:</span>
+                            <span class="detail-value">{{ project.clientContact }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="detail-label">Location:</span>
+                            <span class="detail-value">{{ project.siteLocation }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-user-tie"></i>
+                            <span class="detail-label">Employee:</span>
+                            <span class="detail-value">{{ project.employeeName }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar"></i>
+                            <span class="detail-label">Deadline:</span>
+                            <span class="detail-value">{{ project.deadline }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span class="detail-label">Overall Progress:</span>
+                            <span class="detail-value progress-badge">{{ getCompletionPercentage() }}%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons" *ngIf="userRole === 'employee'">
+                    <button class="edit-btn" (click)="toggleEditMode()" *ngIf="!isEditMode">
+                        <i class="fas fa-edit"></i> Edit Progress
+                    </button>
+                    <button class="save-btn" (click)="saveProgress()" *ngIf="isEditMode">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <button class="cancel-btn" (click)="cancelEdit()" *ngIf="isEditMode">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Overall Progress Bar -->
+            <div class="overall-progress-section">
+                <div class="progress-label-container">
+                    <span class="progress-label">Overall Completion</span>
+                    <span class="progress-percentage">{{ getCompletionPercentage() }}%</span>
+                </div>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" [style.width.%]="getCompletionPercentage()"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Progress Stages -->
+        <div class="progress-stages-panel" *ngIf="project">
+            <div class="panel-header">
+                <h3 class="panel-title">
+                    <i class="fas fa-tasks"></i> Work Progress Stages
+                </h3>
+            </div>
+
+            <div class="stages-grid">
+                <!-- Stage 1: Feasibility -->
+                <div class="stage-card">
+                    <div class="stage-header">
+                        <div class="stage-icon feasibility">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="stage-title-section">
+                            <h4 class="stage-title">Feasibility</h4>
+                            <p class="stage-description">Application and approval status</p>
+                        </div>
+                    </div>
+                    <div class="stage-content">
+                        <div class="status-field">
+                            <label class="field-label">Status:</label>
+                            <div class="field-value" *ngIf="!isEditMode">
+                                <span [class]="'status-tag ' + (project.workProgress.feasibility === 'Received' ? 'received' : project.workProgress.feasibility === 'Applied' ? 'applied' : 'pending')">
+                                    <i class="fas" [class.fa-check-circle]="project.workProgress.feasibility === 'Received'" 
+                                       [class.fa-paper-plane]="project.workProgress.feasibility === 'Applied'"
+                                       [class.fa-clock]="!project.workProgress.feasibility"></i>
+                                    {{ project.workProgress.feasibility || 'Not Started' }}
+                                </span>
+                            </div>
+                            <select class="field-select" [(ngModel)]="project.workProgress.feasibility" *ngIf="isEditMode">
+                                <option value="">Not Started</option>
+                                <option value="Applied">Applied</option>
+                                <option value="Received">Received</option>
+                            </select>
+                        </div>
+                        <div class="remarks-field">
+                            <label class="field-label"><i class="fas fa-comment-alt"></i> Remarks:</label>
+                            <div class="field-value remarks-text" *ngIf="!isEditMode">
+                                {{ project.workProgress.feasibilityRemarks || 'No remarks added' }}
+                            </div>
+                            <textarea class="field-textarea" 
+                                      [(ngModel)]="project.workProgress.feasibilityRemarks" 
+                                      placeholder="Add remarks for feasibility status..."
+                                      rows="3"
+                                      *ngIf="isEditMode"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2: Agreement -->
+                <div class="stage-card">
+                    <div class="stage-header">
+                        <div class="stage-icon agreement">
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                        <div class="stage-title-section">
+                            <h4 class="stage-title">Agreement</h4>
+                            <p class="stage-description">Contract completion status</p>
+                        </div>
+                    </div>
+                    <div class="stage-content">
+                        <div class="status-field">
+                            <label class="field-label">Status:</label>
+                            <div class="field-value" *ngIf="!isEditMode">
+                                <span [class]="'status-tag ' + getStatusClass(project.workProgress.agreement)">
+                                    <i class="fas" [class]="getStatusIcon(project.workProgress.agreement)"></i>
+                                    {{ project.workProgress.agreement || 'Not Started' }}
+                                </span>
+                            </div>
+                            <select class="field-select" [(ngModel)]="project.workProgress.agreement" *ngIf="isEditMode">
+                                <option value="">Not Started</option>
+                                <option value="Not Completed">Not Completed</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Signed">Signed</option>
+                            </select>
+                        </div>
+                        <div class="remarks-field">
+                            <label class="field-label"><i class="fas fa-comment-alt"></i> Remarks:</label>
+                            <div class="field-value remarks-text" *ngIf="!isEditMode">
+                                {{ project.workProgress.agreementRemarks || 'No remarks added' }}
+                            </div>
+                            <textarea class="field-textarea" 
+                                      [(ngModel)]="project.workProgress.agreementRemarks" 
+                                      placeholder="Add remarks for agreement status..."
+                                      rows="3"
+                                      *ngIf="isEditMode"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3: GI Structure -->
+                <div class="stage-card">
+                    <div class="stage-header">
+                        <div class="stage-icon structure">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="stage-title-section">
+                            <h4 class="stage-title">GI Structure</h4>
+                            <p class="stage-description">Ground installation structure</p>
+                        </div>
+                    </div>
+                    <div class="stage-content">
+                        <div class="status-field">
+                            <label class="field-label">Status:</label>
+                            <div class="field-value" *ngIf="!isEditMode">
+                                <span [class]="'status-tag ' + getStatusClass(project.workProgress.giStructure)">
+                                    <i class="fas" [class]="getStatusIcon(project.workProgress.giStructure)"></i>
+                                    {{ project.workProgress.giStructure || 'Not Started' }}
+                                </span>
+                            </div>
+                            <select class="field-select" [(ngModel)]="project.workProgress.giStructure" *ngIf="isEditMode">
+                                <option value="">Not Started</option>
+                                <option value="Not Completed">Not Completed</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="remarks-field">
+                            <label class="field-label"><i class="fas fa-comment-alt"></i> Remarks:</label>
+                            <div class="field-value remarks-text" *ngIf="!isEditMode">
+                                {{ project.workProgress.giStructureRemarks || 'No remarks added' }}
+                            </div>
+                            <textarea class="field-textarea" 
+                                      [(ngModel)]="project.workProgress.giStructureRemarks" 
+                                      placeholder="Add remarks for GI structure status..."
+                                      rows="3"
+                                      *ngIf="isEditMode"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 4: PV Installation -->
+                <div class="stage-card">
+                    <div class="stage-header">
+                        <div class="stage-icon pv">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <div class="stage-title-section">
+                            <h4 class="stage-title">PV Installation</h4>
+                            <p class="stage-description">Photovoltaic panel installation</p>
+                        </div>
+                    </div>
+                    <div class="stage-content">
+                        <div class="status-field">
+                            <label class="field-label">Status:</label>
+                            <div class="field-value" *ngIf="!isEditMode">
+                                <span [class]="'status-tag ' + getStatusClass(project.workProgress.pvInstallation)">
+                                    <i class="fas" [class]="getStatusIcon(project.workProgress.pvInstallation)"></i>
+                                    {{ project.workProgress.pvInstallation || 'Not Started' }}
+                                </span>
+                            </div>
+                            <select class="field-select" [(ngModel)]="project.workProgress.pvInstallation" *ngIf="isEditMode">
+                                <option value="">Not Started</option>
+                                <option value="Not Completed">Not Completed</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="remarks-field">
+                            <label class="field-label"><i class="fas fa-comment-alt"></i> Remarks:</label>
+                            <div class="field-value remarks-text" *ngIf="!isEditMode">
+                                {{ project.workProgress.pvInstallationRemarks || 'No remarks added' }}
+                            </div>
+                            <textarea class="field-textarea" 
+                                      [(ngModel)]="project.workProgress.pvInstallationRemarks" 
+                                      placeholder="Add remarks for PV installation status..."
+                                      rows="3"
+                                      *ngIf="isEditMode"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 5: Inverter -->
+                <div class="stage-card">
+                    <div class="stage-header">
+                        <div class="stage-icon inverter">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="stage-title-section">
+                            <h4 class="stage-title">Inverter</h4>
+                            <p class="stage-description">Inverter installation and setup</p>
+                        </div>
+                    </div>
+                    <div class="stage-content">
+                        <div class="status-field">
+                            <label class="field-label">Status:</label>
+                            <div class="field-value" *ngIf="!isEditMode">
+                                <span [class]="'status-tag ' + getStatusClass(project.workProgress.inverter)">
+                                    <i class="fas" [class]="getStatusIcon(project.workProgress.inverter)"></i>
+                                    {{ project.workProgress.inverter || 'Not Started' }}
+                                </span>
+                            </div>
+                            <select class="field-select" [(ngModel)]="project.workProgress.inverter" *ngIf="isEditMode">
+                                <option value="">Not Started</option>
+                                <option value="Not Completed">Not Completed</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="remarks-field">
+                            <label class="field-label"><i class="fas fa-comment-alt"></i> Remarks:</label>
+                            <div class="field-value remarks-text" *ngIf="!isEditMode">
+                                {{ project.workProgress.inverterRemarks || 'No remarks added' }}
+                            </div>
+                            <textarea class="field-textarea" 
+                                      [(ngModel)]="project.workProgress.inverterRemarks" 
+                                      placeholder="Add remarks for inverter status..."
+                                      rows="3"
+                                      *ngIf="isEditMode"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 6: Net Meter -->
+                <div class="stage-card">
+                    <div class="stage-header">
+                        <div class="stage-icon netmeter">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="stage-title-section">
+                            <h4 class="stage-title">Net Meter</h4>
+                            <p class="stage-description">Net meter installation</p>
+                        </div>
+                    </div>
+                    <div class="stage-content">
+                        <div class="status-field">
+                            <label class="field-label">Status:</label>
+                            <div class="field-value" *ngIf="!isEditMode">
+                                <span [class]="'status-tag ' + getStatusClass(project.workProgress.netMeter)">
+                                    <i class="fas" [class]="getStatusIcon(project.workProgress.netMeter)"></i>
+                                    {{ project.workProgress.netMeter || 'Not Started' }}
+                                </span>
+                            </div>
+                            <select class="field-select" [(ngModel)]="project.workProgress.netMeter" *ngIf="isEditMode">
+                                <option value="">Not Started</option>
+                                <option value="Not Completed">Not Completed</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="remarks-field">
+                            <label class="field-label"><i class="fas fa-comment-alt"></i> Remarks:</label>
+                            <div class="field-value remarks-text" *ngIf="!isEditMode">
+                                {{ project.workProgress.netMeterRemarks || 'No remarks added' }}
+                            </div>
+                            <textarea class="field-textarea" 
+                                      [(ngModel)]="project.workProgress.netMeterRemarks" 
+                                      placeholder="Add remarks for net meter status..."
+                                      rows="3"
+                                      *ngIf="isEditMode"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 7: Commissioned -->
+                <div class="stage-card">
+                    <div class="stage-header">
+                        <div class="stage-icon commissioned">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <div class="stage-title-section">
+                            <h4 class="stage-title">Commissioned</h4>
+                            <p class="stage-description">Final commissioning completed</p>
+                        </div>
+                    </div>
+                    <div class="stage-content">
+                        <div class="status-field">
+                            <label class="field-label">Status:</label>
+                            <div class="field-value" *ngIf="!isEditMode">
+                                <span [class]="'status-tag ' + getStatusClass(project.workProgress.commissioned)">
+                                    <i class="fas" [class]="getStatusIcon(project.workProgress.commissioned)"></i>
+                                    {{ project.workProgress.commissioned || 'Not Started' }}
+                                </span>
+                            </div>
+                            <select class="field-select" [(ngModel)]="project.workProgress.commissioned" *ngIf="isEditMode">
+                                <option value="">Not Started</option>
+                                <option value="Not Completed">Not Completed</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="remarks-field">
+                            <label class="field-label"><i class="fas fa-comment-alt"></i> Remarks:</label>
+                            <div class="field-value remarks-text" *ngIf="!isEditMode">
+                                {{ project.workProgress.commissionedRemarks || 'No remarks added' }}
+                            </div>
+                            <textarea class="field-textarea" 
+                                      [(ngModel)]="project.workProgress.commissionedRemarks" 
+                                      placeholder="Add remarks for commissioned status..."
+                                      rows="3"
+                                      *ngIf="isEditMode"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Uploaded Certificates & Documents Section -->
+        <div class="certificates-section" *ngIf="project">
+            <div class="panel-header">
+                <h3 class="panel-title"><i class="fas fa-folder-open"></i> Uploaded Certificates & Documents</h3>
+            </div>
+
+            <div class="certificates-grid">
+                <!-- Certificate Card -->
+                <div class="certificate-card" *ngFor="let certificate of certificates">
+                    <div class="certificate-header">
+                        <div class="certificate-project-info">
+                            <span class="certificate-project-id">{{ project.id }}</span>
+                            <span class="certificate-divider">|</span>
+                            <span class="certificate-project-name">{{ project.clientName }}</span>
+                        </div>
+                        <span class="certificate-date"><i class="fas fa-clock"></i> {{ certificate.uploadedTime }}</span>
+                    </div>
+                    
+                    <div class="certificate-body">
+                        <div class="certificate-icon-wrapper" [ngClass]="certificate.iconType">
+                            <i class="fas" [ngClass]="certificate.icon"></i>
+                        </div>
+                        <div class="certificate-details">
+                            <div class="certificate-type">{{ certificate.type }}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="certificate-actions">
+                        <button class="download-btn" (click)="downloadCertificate(certificate)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-certificates" *ngIf="certificates.length === 0">
+                <i class="fas fa-folder-open"></i>
+                <p>No certificates or documents uploaded yet for this project</p>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,135 @@
+<!-- employee-management.component.html -->
+<app-admin-sidebar></app-admin-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    
+    <!-- Content Section -->
+    <section class="content-section active">
+        <!-- Success/Error Messages -->
+        <div *ngIf="successMessage" class="alert alert-success">
+            <i class="fas fa-check-circle"></i> {{ successMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+        <div *ngIf="opErrorMessage" class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i> {{ opErrorMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+        <div *ngIf="loadErrorMessage && !opErrorMessage" class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i> {{ loadErrorMessage }}
+            <i class="fas fa-times close-icon" (click)="clearMessages()"></i>
+        </div>
+
+        <!-- Add Employee Form -->
+        <div class="form-card">
+            <h3 class="panel-title"><i class="fas fa-user-plus"></i> Add new employee</h3>
+            
+            <form class="assignment-form" (ngSubmit)="addEmployee()">
+                <!-- Full Name + Employee ID Row -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="employeeName"><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="employeeName" placeholder="Enter employee's full name" 
+                               [(ngModel)]="employeeName" name="employeeName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employeeId"><i class="fas fa-id-badge"></i> Employee ID</label>
+                        <input type="text" id="employeeId" placeholder="Enter employee ID (e.g., EMP001)" 
+                               [(ngModel)]="employeeId" name="employeeId" required>
+                    </div>
+                </div>
+
+                <!-- Designation - Full Width Row -->
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="designation"><i class="fas fa-briefcase"></i> Designation/Role</label>
+                        <input type="text" id="designation" placeholder="Enter designation (e.g., Software Engineer)" 
+                               [(ngModel)]="designation" name="designation" required>
+                    </div>
+                </div>
+
+                <!-- Email + Password -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="employeeEmail"><i class="fas fa-envelope"></i> Email (Login ID)</label>
+                        <input type="email" id="employeeEmail" placeholder="Assign a unique email" 
+                               [(ngModel)]="employeeEmail" name="employeeEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employeePassword"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="employeePassword" placeholder="Assign a password" 
+                               [(ngModel)]="employeePassword" name="employeePassword" required>
+                    </div>
+                </div>
+
+                <!-- Contact Number + Joining Date -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactNumber"><i class="fas fa-phone"></i> Contact Number</label>
+                        <input type="tel" id="contactNumber" placeholder="Enter contact number" 
+                               [(ngModel)]="contactNumber" name="contactNumber">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="joiningDate"><i class="fas fa-calendar-alt"></i> Date of Joining</label>
+                        <input type="date" id="joiningDate" 
+                               [(ngModel)]="joiningDate" name="joiningDate" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn"><i class="fas fa-user-plus"></i> Add Employee</button>
+            </form>
+        </div>
+
+        <!-- Employee Table -->
+        <div class="table-card">
+            <h3 class="panel-title"><i class="fas fa-list"></i> Current Employee Roster</h3>
+            
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-id-badge"></i> Employee ID</th>
+                            <th><i class="fas fa-user"></i> Employee Name</th>
+                            <th><i class="fas fa-briefcase"></i> Role</th>
+                            <th><i class="fas fa-envelope"></i> Login Email</th>
+                            <th><i class="fas fa-calendar-alt"></i> Joining Date</th>
+                            <th><i class="fas fa-cogs"></i> Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of employees; let i = index">
+                            <td>{{ employee.employeeId || 'E' + (i + 1).toString().padStart(3, '0') }}</td>
+                            <td>{{ employee.name }}</td>
+                            <td>{{ employee.designation || 'N/A' }}</td>
+                            <td>{{ employee.email }}</td>
+                            <td>{{ employee.joiningDate | date: 'yyyy-MM-dd' }}</td>
+                            <td>
+                                <button class="action-btn view-btn"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="action-btn delete-btn" (click)="deleteEmployee(employee._id)">
+                                    <i class="fas fa-trash"></i> 
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="employees.length === 0">
+                            <td colspan="6" style="text-align: center;">No employees found. Add your first employee above.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                <button class="pagination-btn" disabled><i class="fas fa-angle-left"></i></button>
+                <div class="pagination-pages">
+                    <button class="pagination-page active">1</button>
+                    <button class="pagination-page">2</button>
+                    <button class="pagination-page">3</button>
+                </div>
+                <button class="pagination-btn"><i class="fas fa-angle-right"></i></button>
+            </div>
+        </div>
+    </section>
+</div>

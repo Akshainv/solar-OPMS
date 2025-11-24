@@ -1,0 +1,53 @@
+<app-employee-sidebar></app-employee-sidebar>
+
+<div class="main-content" id="mainContent">
+   
+    <div class="content-section active">
+        <div class="notifications-header">
+            <h3 class="panel-title">
+                <i class="fas fa-bell"></i> Work Assignments
+            </h3>
+            <div class="notification-actions">
+                <button class="action-btn mark-all-btn" (click)="markAllAsRead()">
+                    <i class="fas fa-check-double"></i> Mark All as Read
+                </button>
+            </div>
+        </div>
+
+        <div class="notifications-container" *ngIf="notifications.length > 0">
+            <div class="notification-card" 
+                 *ngFor="let notification of notifications"
+                 [class.unread]="notification.isUnread">
+                <div class="notification-icon" [ngClass]="getIconColorClass(notification.type)">
+                    <i [ngClass]="getIconClass(notification.type)"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-header-row">
+                        <h3 class="notification-title">{{ notification.title }}</h3>
+                        <span class="unread-dot" *ngIf="notification.isUnread"></span>
+                    </div>
+                    <p class="notification-message" [innerHTML]="notification.message"></p>
+                    <div class="notification-meta">
+                        <span class="notification-time">
+                            <i class="far fa-clock"></i> {{ notification.time }}
+                        </span>
+                        <span class="notification-category" [ngClass]="getCategoryClass(notification.category)">
+                            <i class="fas fa-tag"></i> {{ notification.category }}
+                        </span>
+                    </div>
+                    <div class="notification-actions-row">
+                        <button class="notif-btn secondary-btn" (click)="markAsRead(notification.id)">
+                            <i class="fas fa-check"></i> Mark as Read
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-state" *ngIf="notifications.length === 0">
+            <i class="fas fa-bell-slash"></i>
+            <h3>No Notifications</h3>
+            <p>You're all caught up! No new assignments at the moment.</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+<!-- admin-dashboard.component.html -->
+<app-admin-sidebar></app-admin-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="content-section active">
+        <!-- Overview Cards -->
+        <div class="overview-cards">
+            <div class="stat-card">
+                <div class="stat-icon projects-icon"><i class="fas fa-folder"></i></div>
+                <div class="stat-info">
+                    <h3 class="stat-value">5</h3>
+                    <p class="stat-label">Total Projects</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon progress-icon"><i class="fas fa-spinner"></i></div>
+                <div class="stat-info">
+                    <h3 class="stat-value">2</h3>
+                    <p class="stat-label">In Progress</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon completed-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-info">
+                    <h3 class="stat-value">1</h3>
+                    <p class="stat-label">Completed</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Panel -->
+        <div class="notifications-panel">
+            <h3 class="panel-title"><i class="fas fa-bell"></i> Recent Notifications</h3>
+            <div class="notification-list">
+                <div class="notification-item">
+                    <span class="notif-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                    <div class="notif-content">
+                        <p class="notif-text">Pending work assignment for Project #1043</p>
+                        <span class="notif-time"><i class="far fa-clock"></i> 2 hours ago</span>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <span class="notif-icon"><i class="fas fa-comment-dots"></i></span>
+                    <div class="notif-content">
+                        <p class="notif-text">New client feedback received</p>
+                        <span class="notif-time"><i class="far fa-clock"></i> 4 hours ago</span>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <span class="notif-icon"><i class="fas fa-bell"></i></span>
+                    <div class="notif-content">
+                        <p class="notif-text">Service request from Client #247</p>
+                        <span class="notif-time"><i class="far fa-clock"></i> 6 hours ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports & Analytics Section -->
+    <section id="reports" class="content-section">
+        <h2 class="section-title">Reports & Analytics</h2>
+        
+        <div class="reports-grid">
+            <div class="report-card">
+                <h3 class="report-title"><i class="fas fa-calendar-day"></i> Daily Productivity Summary</h3>
+                <div class="report-content">
+                    <div class="report-stat">
+                        <span class="report-label"><i class="fas fa-check-double"></i> Tasks Completed:</span>
+                        <span class="report-value">34</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="report-label"><i class="fas fa-clock"></i> On-Time Delivery:</span>
+                        <span class="report-value">89%</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="report-label"><i class="fas fa-users-cog"></i> Active Teams:</span>
+                        <span class="report-value">8</span>
+                    </div>
+                </div>
+                <div class="report-actions">
+                    <button class="export-btn pdf-btn"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                    <button class="export-btn excel-btn"><i class="fas fa-file-excel"></i> Export Excel</button>
+                </div>
+            </div>
+            
+            <div class="report-card">
+                <h3 class="report-title"><i class="fas fa-calendar-week"></i> Weekly Performance</h3>
+                <div class="report-content">
+                    <div class="report-stat">
+                        <span class="report-label"><i class="fas fa-box-open"></i> Projects Delivered:</span>
+                        <span class="report-value">12</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="report-label"><i class="fas fa-smile"></i> Client Satisfaction:</span>
+                        <span class="report-value">4.7/5</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="report-label"><i class="fas fa-wrench"></i> Issues Resolved:</span>
+                        <span class="report-value">23</span>
+                    </div>
+                </div>
+                <div class="report-actions">
+                    <button class="export-btn pdf-btn"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                    <button class="export-btn excel-btn"><i class="fas fa-file-excel"></i> Export Excel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Issue Logs -->
+        <div class="issue-logs">
+            <h3 class="panel-title"><i class="fas fa-clipboard-list"></i> Recent Issue Logs</h3>
+            <div class="log-list">
+                <div class="log-item">
+                    <span class="log-priority high"><i class="fas fa-exclamation-circle"></i> High</span>
+                    <div class="log-details">
+                        <p class="log-text">Equipment failure at Site A - requires immediate attention</p>
+                        <span class="log-date"><i class="far fa-calendar"></i> Oct 15, 2025</span>
+                    </div>
+                </div>
+                <div class="log-item">
+                    <span class="log-priority medium"><i class="fas fa-minus-circle"></i> Medium</span>
+                    <div class="log-details">
+                        <p class="log-text">Delay in material delivery for Project #1043</p>
+                        <span class="log-date"><i class="far fa-calendar"></i> Oct 14, 2025</span>
+                    </div>
+                </div>
+                <div class="log-item">
+                    <span class="log-priority low"><i class="fas fa-info-circle"></i> Low</span>
+                    <div class="log-details">
+                        <p class="log-text">Minor adjustment needed in installation plan</p>
+                        <span class="log-date"><i class="far fa-calendar"></i> Oct 13, 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

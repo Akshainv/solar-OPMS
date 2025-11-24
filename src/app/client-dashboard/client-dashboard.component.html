@@ -1,0 +1,66 @@
+<!-- client-dashboard.component.html -->
+<app-client-sidebar></app-client-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+
+  <!-- Dashboard Section -->
+  <section id="dashboard" class="content-section active">
+
+    <!-- Overview Cards -->
+    <div class="overview-cards">
+      <div class="stat-card">
+        <div class="stat-icon projects-icon"><i class="fas fa-project-diagram"></i></div>
+        <div class="stat-info">
+          <h3 class="stat-value">12</h3>
+          <p class="stat-label">My Projects</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon service-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="stat-info">
+          <h3 class="stat-value">8</h3>
+          <p class="stat-label">Completed</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon workload-icon"><i class="fas fa-clock"></i></div>
+        <div class="stat-info">
+          <h3 class="stat-value">4</h3>
+          <p class="stat-label">Pending</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications Panel (unchanged) -->
+    <div class="notifications-panel">
+      <h3 class="panel-title"><i class="fas fa-info-circle"></i> Recent Updates</h3>
+      <div class="notification-list">
+        <div class="notification-item">
+          <span class="notif-icon"><i class="fas fa-check-circle"></i></span>
+          <div class="notif-content">
+            <p class="notif-text">Installation completed for Project #1034</p>
+            <span class="notif-time"><i class="far fa-clock"></i> 2 hours ago</span>
+          </div>
+        </div>
+        <div class="notification-item">
+          <span class="notif-icon"><i class="fas fa-tools"></i></span>
+          <div class="notif-content">
+            <p class="notif-text">Technician assigned for your request</p>
+            <span class="notif-time"><i class="far fa-clock"></i> 5 hours ago</span>
+          </div>
+        </div>
+        <div class="notification-item">
+          <span class="notif-icon"><i class="fas fa-bell"></i></span>
+          <div class="notif-content">
+            <p class="notif-text">Service visit scheduled on October 22, 2025</p>
+            <span class="notif-time"><i class="far fa-clock"></i> 1 day ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

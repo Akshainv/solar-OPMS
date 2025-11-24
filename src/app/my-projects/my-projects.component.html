@@ -1,0 +1,57 @@
+<app-client-sidebar></app-client-sidebar>
+
+<div class="main-content" id="mainContent">
+    <section class="content-section active">
+        <div class="table-card">
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag"></i> Project ID</th>
+                            <th><i class="fas fa-map-marker-alt"></i> Site Location</th>
+                            <th><i class="fas fa-info-circle"></i> Installation Status</th>
+                            <th><i class="fas fa-user-tie"></i> Technician Name</th>
+                            <th><i class="fas fa-calendar-check"></i> Installation Date</th>
+                            <th><i class="fas fa-qrcode"></i> QR Code</th>
+                            <th><i class="fas fa-eye"></i> Service Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let project of projects">
+                            <td>{{ project.id }}</td>
+                            <td>{{ project.siteLocation }}</td>
+                            <td>
+                                <span [ngClass]="{
+                                    'status-badge': true,
+                                    'in-progress': project.installationStatus === 'In Progress',
+                                    'completed': project.installationStatus === 'Completed',
+                                    'pending': project.installationStatus === 'Pending'
+                                }">
+                                    <i [ngClass]="{
+                                        'fas': true,
+                                        'fa-spinner': project.installationStatus === 'In Progress',
+                                        'fa-check-circle': project.installationStatus === 'Completed',
+                                        'fa-clock': project.installationStatus === 'Pending'
+                                    }"></i>
+                                    {{ project.installationStatus }}
+                                </span>
+                            </td>
+                            <td>{{ project.technicianName }}</td>
+                            <td>{{ project.installationDate }}</td>
+                            <td>
+                                <button class="action-btn view-btn" (click)="viewQRCode(project.id)">
+                                    <i class="fas fa-qrcode"></i> View QR
+                                </button>
+                            </td>
+                            <td>
+                                <button class="action-btn view-btn" (click)="viewServiceDetails(project.id)">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

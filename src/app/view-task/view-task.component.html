@@ -1,0 +1,221 @@
+<app-employee-sidebar></app-employee-sidebar>
+
+<div class="main-content" id="mainContent">
+    
+
+    <section class="content-section active">
+        <!-- Back Button -->
+        <div class="back-nav">
+            <button class="back-btn" (click)="goBack()">
+                <i class="fas fa-arrow-left"></i> Back to Tasks
+            </button>
+        </div>
+
+        <!-- Task Header Card -->
+        <div class="task-header-card">
+            <div class="task-header-top">
+                <div class="task-id-section">
+                    <span class="task-id">#1024</span>
+                    <span class="status-badge in-progress">
+                        <i class="fas fa-spinner"></i> In Progress
+                    </span>
+                </div>
+            </div>
+            <h2 class="task-title">Solar Panel Installation</h2>
+            <div class="task-meta-grid">
+                <div class="meta-item">
+                    <i class="fas fa-user"></i>
+                    <div class="meta-content">
+                        <span class="meta-label">Client</span>
+                        <span class="meta-value">Green Energy Corp</span>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="meta-content">
+                        <span class="meta-label">Location</span>
+                        <span class="meta-value">Green Valley Complex</span>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="meta-content">
+                        <span class="meta-label">Deadline</span>
+                        <span class="meta-value deadline-urgent">Oct 20, 2025 (2 days left)</span>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="meta-content">
+                        <span class="meta-label">Assigned Date</span>
+                        <span class="meta-value">Oct 10, 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Description -->
+        <div class="info-card">
+            <h3 class="section-title"><i class="fas fa-align-left"></i> Task Description</h3>
+            <p class="description-text">
+                Complete installation of 50 solar panels on the rooftop of Green Valley Complex. 
+                The project includes mounting structure assembly, electrical wiring, inverter installation, 
+                and system testing. Ensure all safety protocols are followed and obtain necessary approvals 
+                before commissioning. Client requires daily progress updates and photo documentation.
+            </p>
+        </div>
+
+        <!-- Simple Progress Display -->
+        <div class="info-card">
+            <h3 class="section-title"><i class="fas fa-chart-line"></i> Project Progress</h3>
+            
+            <!-- Progress Bar with Percentage -->
+            <div class="progress-bar-container">
+                <div class="progress-bar-full">
+                    <div class="progress-fill-full" style="width: 65%">
+                        <span class="progress-fill-label">65%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Documents (Uploaded by Admin) -->
+        <div class="info-card">
+            <h3 class="section-title">
+                <i class="fas fa-folder"></i> Project Documents 
+                <span class="badge-admin">From Admin</span>
+            </h3>
+            <div class="documents-grid">
+                <div class="document-item">
+                    <div class="doc-icon blueprint">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="doc-info">
+                        <div class="doc-name">Project Blueprint</div>
+                        <div class="doc-meta">
+                            <span class="doc-date">
+                                <i class="far fa-calendar"></i> Oct 10, 2025
+                            </span>
+                            <span class="doc-size">2.5 MB</span>
+                        </div>
+                    </div>
+                    <button class="doc-download-btn" (click)="downloadDocument('Project Blueprint')" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+                <div class="document-item">
+                    <div class="doc-icon specification">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="doc-info">
+                        <div class="doc-name">Technical Specifications</div>
+                        <div class="doc-meta">
+                            <span class="doc-date">
+                                <i class="far fa-calendar"></i> Oct 10, 2025
+                            </span>
+                            <span class="doc-size">1.8 MB</span>
+                        </div>
+                    </div>
+                    <button class="doc-download-btn" (click)="downloadDocument('Technical Specifications')" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+                <div class="document-item">
+                    <div class="doc-icon safety">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="doc-info">
+                        <div class="doc-name">Safety Guidelines</div>
+                        <div class="doc-meta">
+                            <span class="doc-date">
+                                <i class="far fa-calendar"></i> Oct 10, 2025
+                            </span>
+                            <span class="doc-size">850 KB</span>
+                        </div>
+                    </div>
+                    <button class="doc-download-btn" (click)="downloadDocument('Safety Guidelines')" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+                <div class="document-item">
+                    <div class="doc-icon contract">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="doc-info">
+                        <div class="doc-name">Work Order Contract</div>
+                        <div class="doc-meta">
+                            <span class="doc-date">
+                                <i class="far fa-calendar"></i> Oct 10, 2025
+                            </span>
+                            <span class="doc-size">1.2 MB</span>
+                        </div>
+                    </div>
+                    <button class="doc-download-btn" (click)="downloadDocument('Work Order Contract')" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Uploaded Documents -->
+        <div class="info-card">
+            <h3 class="section-title">
+                <i class="fas fa-folder-open"></i> My Uploaded Documents
+                <span class="badge-employee">Your Uploads</span>
+            </h3>
+            <div class="documents-grid">
+                <div class="document-item">
+                    <div class="doc-icon report">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="doc-info">
+                        <div class="doc-name">Progress Report</div>
+                        <div class="doc-meta">
+                            <span class="doc-date">
+                                <i class="far fa-calendar"></i> Oct 18, 2025
+                            </span>
+                            <span class="doc-size">640 KB</span>
+                        </div>
+                    </div>
+                    <button class="doc-download-btn" (click)="downloadDocument('Progress Report')" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+                <div class="document-item">
+                    <div class="doc-icon photo">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="doc-info">
+                        <div class="doc-name">Site Photos</div>
+                        <div class="doc-meta">
+                            <span class="doc-date">
+                                <i class="far fa-calendar"></i> Oct 18, 2025
+                            </span>
+                            <span class="doc-size">3.4 MB</span>
+                        </div>
+                    </div>
+                    <button class="doc-download-btn" (click)="downloadDocument('Site Photos')" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+                <div class="document-item">
+                    <div class="doc-icon checklist">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="doc-info">
+                        <div class="doc-name">Safety Checklist</div>
+                        <div class="doc-meta">
+                            <span class="doc-date">
+                                <i class="far fa-calendar"></i> Oct 16, 2025
+                            </span>
+                            <span class="doc-size">420 KB</span>
+                        </div>
+                    </div>
+                    <button class="doc-download-btn" (click)="downloadDocument('Safety Checklist')" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,72 @@
+<app-client-sidebar></app-client-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    
+    <!-- Back Button Section -->
+    <div class="back-section">
+        <button class="back-btn" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i> Back to My Projects
+        </button>
+    </div>
+
+    <!-- Service Information Panel -->
+    <div class="service-info-panel">
+        <div class="panel-header">
+            <h3 class="panel-title"><i class="fas fa-wrench"></i> Service Information</h3>
+        </div>
+        <div class="service-info-content">
+            <div class="service-plan">
+                <div class="plan-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <strong>Service Plan:</strong> 5 Year Free Service
+                </div>
+                <div class="plan-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <strong>Frequency:</strong> 2 Services per Year (Every 6 months)
+                </div>
+                <div class="plan-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Note:</strong> 5 year service is mandatory for Solar Installations
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Records Table -->
+    <div class="projects-panel">
+        <div class="panel-header">
+            <h3 class="panel-title"><i class="fas fa-list-alt"></i> Service Records (Total: 10 Services)</h3>
+        </div>
+
+        <div class="table-responsive">
+            <table class="projects-table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-hashtag"></i> Service #</th>
+                        <th><i class="fas fa-calendar-alt"></i> Year</th>
+                        <th><i class="fas fa-calendar"></i> Service Month</th>
+                        <th><i class="fas fa-info-circle"></i> Status</th>
+                        <th><i class="fas fa-calendar-check"></i> Completed Date</th>
+                        <th><i class="fas fa-comment"></i> Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let service of serviceRecords">
+                        <td><span class="service-number">Service {{ service.serviceNumber }}</span></td>
+                        <td><span class="year-badge">Year {{ service.year }}</span></td>
+                        <td>{{ service.serviceMonth }}</td>
+                        <td>
+                            <span [class]="'status-badge ' + (service.isCompleted ? 'completed' : 'pending')">
+                                <i [class]="'fas ' + (service.isCompleted ? 'fa-check-circle' : 'fa-clock')"></i>
+                                {{ service.isCompleted ? 'Completed' : 'Pending' }}
+                            </span>
+                        </td>
+                        <td>{{ service.completedDate || '-' }}</td>
+                        <td><span class="remarks-text">{{ service.remarks || '-' }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

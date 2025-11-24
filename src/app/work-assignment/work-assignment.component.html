@@ -1,0 +1,257 @@
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="main-content" id="mainContent">
+
+    <section class="content-section active">
+        <div class="assignment-form-section">
+            <div class="panel-header">
+                <h3 class="panel-title"><i class="fas fa-plus-circle"></i> Create New Assignment</h3>
+            </div>
+
+            <form class="assignment-form" id="assignmentForm">
+                <div class="form-grid extended-grid">
+                    <div class="form-group full-width">
+                        <label for="taskTitle">
+                            <i class="fas fa-clipboard-list"></i> Task Title
+                            <span class="required">*</span>
+                        </label>
+                        <input type="text" id="taskTitle" placeholder="Enter task title (e.g., Solar Panel Installation at Site A)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clientSelect">
+                            <i class="fas fa-building"></i> Client Name
+                            <span class="required">*</span>
+                        </label>
+                        <select id="clientSelect" required>
+                            <option value="">Select a client</option>
+                            <option value="client-a">MegaCorp Energy</option>
+                            <option value="client-b">Residential Developer X</option>
+                            <option value="client-c">Global Logistics Inc.</option>
+                            <option value="client-d">Local Farm Trust</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="siteLocation">
+                            <i class="fas fa-map-marker-alt"></i> Site Location
+                            <span class="required">*</span>
+                        </label>
+                        <input type="text" id="siteLocation" placeholder="Enter site address (e.g., 123 Main St, City)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectSelect">
+                            <i class="fas fa-project-diagram"></i> Select Project
+                            <span class="required">*</span>
+                        </label>
+                        <select id="projectSelect" required>
+                            <option value="">Choose a project</option>
+                            <option value="1043">Project #1043 - Solar Park A</option>
+                            <option value="1044">Project #1044 - Residential Site B</option>
+                            <option value="1045">Project #1045 - Commercial Plaza C</option>
+                            <option value="1046">Project #1046 - Industrial Complex D</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assignTo">
+                            <i class="fas fa-user-tag"></i> Assign To
+                            <span class="required">*</span>
+                        </label>
+                        <select id="assignTo" required>
+                            <option value="">Select employee</option>
+                            <optgroup label="Teams">
+                                <option value="team-a">Team A - Installation</option>
+                                <option value="team-b">Team B - Maintenance</option>
+                                <option value="team-c">Team C - Inspection</option>
+                            </optgroup>
+                            <optgroup label="Individual Employees">
+                                <option value="emp-1">John Doe - Senior Technician</option>
+                                <option value="emp-2">Jane Smith - Electrician</option>
+                                <option value="emp-3">Mike Johnson - Installation Lead</option>
+                                <option value="emp-4">Sarah Williams - Maintenance Expert</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">
+                            <i class="fas fa-flag"></i> Priority Level
+                            <span class="required">*</span>
+                        </label>
+                        <select id="priority" required>
+                            <option value="">Select priority</option>
+                            <option value="critical">Critical - Immediate Action</option>
+                            <option value="high">High - Urgent</option>
+                            <option value="medium">Medium - Normal</option>
+                            <option value="low">Low - When Available</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deadline">
+                            <i class="fas fa-calendar-check"></i> Deadline
+                            <span class="required">*</span>
+                        </label>
+                        <input type="date" id="deadline" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="description">
+                            <i class="fas fa-align-left"></i> Task Description
+                            <span class="required">*</span>
+                        </label>
+                        <textarea id="description" rows="4" placeholder="Provide detailed description of the task and requirements..." required></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="projectDocuments">
+                            <i class="fas fa-upload"></i> Upload Project Related Documents
+                        </label>
+                        <input type="file" id="projectDocuments" multiple>
+                        <small style="color: #64748b; font-size: 11px; margin-top: -3px;">Optional: Upload design specs, schematics, safety protocols, etc. (Max 5 files)</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="reset" class="btn-secondary">
+                        <i class="fas fa-redo"></i> Reset Form
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i> Create & Assign Task
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="assignments-panel">
+            <div class="panel-header">
+                <h3 class="panel-title"><i class="fas fa-history"></i> Recent Assignments</h3>
+            </div>
+
+            <div class="table-responsive">
+                <table class="assignments-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag"></i> Task ID</th>
+                            <th><i class="fas fa-clipboard-list"></i> Task Title</th>
+                            <th><i class="fas fa-user"></i> Assigned To</th>
+                            <th><i class="fas fa-flag"></i> Priority</th>
+                            <th><i class="fas fa-calendar"></i> Deadline</th>
+                            <th><i class="fas fa-cog"></i> Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="task-id">#T1056</span></td>
+                            <td class="task-title">Solar Panel Installation - Site A</td>
+                            <td>
+                                <div class="assignee-info">
+                                    <div class="assignee-avatar">JD</div>
+                                    <span>John Doe</span>
+                                </div>
+                            </td>
+                            <td><span class="priority-badge high"><i class="fas fa-exclamation-circle"></i> High</span></td>
+                            <td>Oct 22, 2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="task-id">#T1055</span></td>
+                            <td class="task-title">Maintenance Check - Residential B</td>
+                            <td>
+                                <div class="assignee-info">
+                                    <div class="assignee-avatar team">TA</div>
+                                    <span>Team A</span>
+                                </div>
+                            </td>
+                            <td><span class="priority-badge medium"><i class="fas fa-minus-circle"></i> Medium</span></td>
+                            <td>Oct 25, 2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="task-id">#T1054</span></td>
+                            <td class="task-title">Safety Inspection - Commercial Plaza</td>
+                            <td>
+                                <div class="assignee-info">
+                                    <div class="assignee-avatar">JS</div>
+                                    <span>Jane Smith</span>
+                                </div>
+                            </td>
+                            <td><span class="priority-badge critical"><i class="fas fa-exclamation-triangle"></i> Critical</span></td>
+                            <td>Oct 21, 2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="task-id">#T1053</span></td>
+                            <td class="task-title">Repair Work - Industrial Site D</td>
+                            <td>
+                                <div class="assignee-info">
+                                    <div class="assignee-avatar team">TB</div>
+                                    <span>Team B</span>
+                                </div>
+                            </td>
+                            <td><span class="priority-badge low"><i class="fas fa-info-circle"></i> Low</span></td>
+                            <td>Oct 28, 2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="task-id">#T1052</span></td>
+                            <td class="task-title">Equipment Testing - Solar Park A</td>
+                            <td>
+                                <div class="assignee-info">
+                                    <div class="assignee-avatar">MJ</div>
+                                    <span>Mike Johnson</span>
+                                </div>
+                            </td>
+                            <td><span class="priority-badge high"><i class="fas fa-exclamation-circle"></i> High</span></td>
+                            <td>Oct 23, 2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Component -->
+            <div class="pagination-container">
+                <button class="pagination-btn" id="prevPage" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <div class="pagination-pages">
+                    <button class="pagination-page active">1</button>
+                    <button class="pagination-page">2</button>
+                    <button class="pagination-page">3</button>
+                    
+                </div>
+                <button class="pagination-btn" id="nextPage">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+</div>

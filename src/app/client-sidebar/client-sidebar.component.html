@@ -1,0 +1,58 @@
+<!-- Header -->
+<header class="header">
+  <div class="header-content">
+    <div class="page-title-section">
+      <h1 class="page-title">Dashboard Overview</h1>
+    </div>
+  </div>
+  <div class="user-info">
+    <span class="welcome-text">Welcome, Client</span>
+    <div class="user-avatar">C</div>
+  </div>
+</header>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-small"><i class="fas fa-sun"></i></div>
+    <h3 class="sidebar-title">Solar OMS</h3>
+   
+  </div>
+
+  <nav class="sidebar-nav">
+    <!-- Main Section -->
+    <span class="nav-section">Main</span>
+
+    <a routerLink="/client-dashboard" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="nav-text">Dashboard</span>
+    </a>
+
+    <a routerLink="/my-projects" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-project-diagram"></i></span>
+      <span class="nav-text">My Projects</span>
+    </a>
+
+    <a routerLink="/qr-service-requests" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-qrcode"></i></span>
+      <span class="nav-text">QR Service Requests</span>
+    </a>
+
+    <a routerLink="/client-notifications" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-bell"></i></span>
+      <span class="nav-text">Notifications</span>
+    </a>
+
+    <a routerLink="/support-contact" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-headset"></i></span>
+      <span class="nav-text">Support / Contact</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="#" class="logout-link">
+      <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+      <span class="nav-text">Logout</span>
+    </a>
+  </div>
+</div>

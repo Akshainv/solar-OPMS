@@ -1,0 +1,135 @@
+<app-admin-sidebar></app-admin-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    
+    <!-- Back Button Section -->
+    <div class="back-section">
+        <button class="back-btn" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i> Back to Completed Projects
+        </button>
+    </div>
+
+    <!-- Service Information Panel -->
+    <div class="service-info-panel">
+        <div class="panel-header">
+            <h3 class="panel-title"><i class="fas fa-wrench"></i> Service Information</h3>
+        </div>
+        <div class="service-info-content">
+            <div class="service-plan">
+                <div class="plan-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <strong>Service Plan:</strong> 5 Year Free Service
+                </div>
+                <div class="plan-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <strong>Frequency:</strong> 2 Services per Year (Every 6 months)
+                </div>
+                <div class="plan-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Note:</strong> 5 year service is mandatory for Solar Installations
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Records Table -->
+    <div class="projects-panel">
+        <div class="panel-header">
+            <h3 class="panel-title"><i class="fas fa-list-alt"></i> Service Records (Total: 10 Services)</h3>
+        </div>
+
+        <div class="table-responsive">
+            <table class="projects-table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-hashtag"></i> Service #</th>
+                        <th><i class="fas fa-calendar-alt"></i> Year</th>
+                        <th><i class="fas fa-calendar"></i> Service Month</th>
+                        <th><i class="fas fa-info-circle"></i> Status</th>
+                        <th><i class="fas fa-calendar-check"></i> Completed Date</th>
+                        <th><i class="fas fa-comment"></i> Remarks</th>
+                        <th><i class="fas fa-cog"></i> Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let service of serviceRecords">
+                        <td><span class="service-number">Service {{ service.serviceNumber }}</span></td>
+                        <td><span class="year-badge">Year {{ service.year }}</span></td>
+
+                        <!-- UPDATED: SERVICE MONTH EDITING -->
+                        <td>
+                            <span *ngIf="editingService !== service.serviceNumber">
+                                {{ service.serviceMonth }}
+                            </span>
+                            <input *ngIf="editingService === service.serviceNumber"
+                                   type="text"
+                                   [(ngModel)]="service.serviceMonth"
+                                   class="month-input"
+                                   placeholder="Enter Month (e.g., Apr 2025)">
+                        </td>
+
+                        <td>
+                            <span *ngIf="editingService !== service.serviceNumber" 
+                                  [class]="'status-badge ' + (service.isCompleted ? 'completed' : 'pending')">
+                                <i [class]="'fas ' + (service.isCompleted ? 'fa-check-circle' : 'fa-clock')"></i>
+                                {{ service.isCompleted ? 'Completed' : 'Pending' }}
+                            </span>
+                            <select *ngIf="editingService === service.serviceNumber" 
+                                    [(ngModel)]="service.isCompleted" 
+                                    class="status-select">
+                                <option [ngValue]="false">Pending</option>
+                                <option [ngValue]="true">Completed</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <span *ngIf="editingService !== service.serviceNumber">
+                                {{ service.completedDate || '-' }}
+                            </span>
+                            <input *ngIf="editingService === service.serviceNumber" 
+                                   type="date" 
+                                   [(ngModel)]="service.completedDate"
+                                   class="date-input"
+                                   [disabled]="!service.isCompleted">
+                        </td>
+
+                        <td>
+                            <span *ngIf="editingService !== service.serviceNumber" class="remarks-text">
+                                {{ service.remarks || '-' }}
+                            </span>
+                            <input *ngIf="editingService === service.serviceNumber" 
+                                   type="text" 
+                                   [(ngModel)]="service.remarks"
+                                   class="remarks-input"
+                                   placeholder="Enter remarks">
+                        </td>
+
+                        <td>
+                            <div class="action-buttons">
+                                <button *ngIf="editingService !== service.serviceNumber" 
+                                        class="action-btn edit-btn" 
+                                        (click)="startEdit(service.serviceNumber)"
+                                        title="Edit Service">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button *ngIf="editingService === service.serviceNumber" 
+                                        class="action-btn save-btn" 
+                                        (click)="updateService(service)"
+                                        title="Save Changes">
+                                    <i class="fas fa-save"></i>
+                                </button>
+                                <button *ngIf="editingService === service.serviceNumber" 
+                                        class="action-btn cancel-btn" 
+                                        (click)="cancelEdit()"
+                                        title="Cancel">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

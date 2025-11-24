@@ -1,0 +1,275 @@
+<app-employee-sidebar></app-employee-sidebar>
+
+<div class="main-content" id="mainContent">
+    <section class="content-section active">
+        <div class="form-card">
+            <h3 class="panel-title">Submit New Progress</h3>
+            
+            <form class="update-form" id="updateForm">
+                <!-- Task Selection -->
+                <div class="form-row full-width-row">
+                    <div class="form-group full-width">
+                        <label for="taskSelect">
+                            Select Task <span class="required">*</span>
+                        </label>
+                        <select id="taskSelect" required>
+                            <option value="">Choose a task...</option>
+                            <option value="1024">#1024 - Green Valley Complex - Solar panel installation</option>
+                            <option value="1023">#1023 - Tech Park Phase 2 - Maintenance service</option>
+                            <option value="1022">#1022 - Downtown Business Center - System inspection</option>
+                            <option value="1015">#1015 - Industrial Estate - Equipment repair</option>
+                            <option value="1012">#1012 - City Mall Complex - System upgrade</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Overall Status -->
+                <div class="form-row full-width-row">
+                    <div class="form-group">
+                        <label for="statusSelect">
+                            Update Status <span class="required">*</span>
+                        </label>
+                        <select id="statusSelect" required>
+                            <option value="">Select status...</option>
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                            <option value="delayed">Delayed</option>
+                            <option value="on-hold">On Hold</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section Divider -->
+                <div class="section-divider">
+                    <h4 class="section-title"><i class="fas fa-tasks"></i> Task Progress Details</h4>
+                </div>
+
+                <!-- Feasibility -->
+                <div class="form-row progress-row">
+                    <div class="form-group">
+                        <label for="feasibility">
+                            <i class="fas fa-clipboard-check"></i> Feasibility
+                        </label>
+                        <select id="feasibility">
+                            <option value="">Select status...</option>
+                            <option value="applied">Applied</option>
+                            <option value="received">Received</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feasibilityRemarks">
+                            <i class="fas fa-comment-alt"></i> Feasibility Remarks
+                        </label>
+                        <textarea id="feasibilityRemarks" rows="3" placeholder="Add remarks for feasibility status..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Agreement -->
+                <div class="form-row progress-row">
+                    <div class="form-group">
+                        <label for="agreement">
+                            <i class="fas fa-file-contract"></i> Agreement
+                        </label>
+                        <select id="agreement">
+                            <option value="">Select status...</option>
+                            <option value="not-completed">Not Completed</option>
+                            <option value="completed">Completed</option>
+                            <option value="signed">Signed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="agreementRemarks">
+                            <i class="fas fa-comment-alt"></i> Agreement Remarks
+                        </label>
+                        <textarea id="agreementRemarks" rows="3" placeholder="Add remarks for agreement status..."></textarea>
+                    </div>
+                </div>
+
+                <!-- GI Structure -->
+                <div class="form-row progress-row">
+                    <div class="form-group">
+                        <label for="giStructure">
+                            <i class="fas fa-building"></i> GI Structure
+                        </label>
+                        <select id="giStructure">
+                            <option value="">Select status...</option>
+                            <option value="completed">Completed</option>
+                            <option value="not-completed">Not Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="giStructureRemarks">
+                            <i class="fas fa-comment-alt"></i> GI Structure Remarks
+                        </label>
+                        <textarea id="giStructureRemarks" rows="3" placeholder="Add remarks for GI structure status..."></textarea>
+                    </div>
+                </div>
+
+                <!-- PV Installation -->
+                <div class="form-row progress-row">
+                    <div class="form-group">
+                        <label for="pvInstallation">
+                            <i class="fas fa-solar-panel"></i> PV Installation
+                        </label>
+                        <select id="pvInstallation">
+                            <option value="">Select status...</option>
+                            <option value="completed">Completed</option>
+                            <option value="not-completed">Not Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pvInstallationRemarks">
+                            <i class="fas fa-comment-alt"></i> PV Installation Remarks
+                        </label>
+                        <textarea id="pvInstallationRemarks" rows="3" placeholder="Add remarks for PV installation status..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Inverter -->
+                <div class="form-row progress-row">
+                    <div class="form-group">
+                        <label for="inverter">
+                            <i class="fas fa-plug"></i> Inverter
+                        </label>
+                        <select id="inverter">
+                            <option value="">Select status...</option>
+                            <option value="completed">Completed</option>
+                            <option value="not-completed">Not Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inverterRemarks">
+                            <i class="fas fa-comment-alt"></i> Inverter Remarks
+                        </label>
+                        <textarea id="inverterRemarks" rows="3" placeholder="Add remarks for inverter status..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Net Meter -->
+                <div class="form-row progress-row">
+                    <div class="form-group">
+                        <label for="netMeter">
+                            <i class="fas fa-tachometer-alt"></i> Net Meter
+                        </label>
+                        <select id="netMeter">
+                            <option value="">Select status...</option>
+                            <option value="completed">Completed</option>
+                            <option value="not-completed">Not Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="netMeterRemarks">
+                            <i class="fas fa-comment-alt"></i> Net Meter Remarks
+                        </label>
+                        <textarea id="netMeterRemarks" rows="3" placeholder="Add remarks for net meter status..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Commissioned -->
+                <div class="form-row progress-row">
+                    <div class="form-group">
+                        <label for="commissioned">
+                            <i class="fas fa-check-circle"></i> Commissioned
+                        </label>
+                        <select id="commissioned">
+                            <option value="">Select status...</option>
+                            <option value="completed">Completed</option>
+                            <option value="not-completed">Not Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="commissionedRemarks">
+                            <i class="fas fa-comment-alt"></i> Commissioned Remarks
+                        </label>
+                        <textarea id="commissionedRemarks" rows="3" placeholder="Add remarks for commissioned status..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Section Divider -->
+                <div class="section-divider">
+                    <h4 class="section-title"><i class="fas fa-align-left"></i> General Notes & Uploads</h4>
+                </div>
+
+                <!-- General Remarks -->
+                <div class="form-row full-width-row">
+                    <div class="form-group full-width">
+                        <label for="remarks">
+                            <i class="fas fa-sticky-note"></i> General Remarks / Completion Notes 
+                        </label>
+                        <textarea id="remarks" rows="6" placeholder="Enter any comments, issues, observations, or completion details..." required></textarea>
+                        <div class="char-count-wrapper">
+                            <span class="char-count"><span id="charCount">0</span>/500 characters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UPLOAD SECTION -->
+                <div class="form-row full-width-row">
+                    <div class="form-group full-width">
+                        <label>
+                            <i class="fas fa-cloud-upload-alt"></i> Upload Files
+                        </label>
+                        <p class="upload-hint-text">Upload reports, site photos, or certificates related to this task</p>
+                    </div>
+                </div>
+
+                <div class="upload-documents-grid">
+                    <div class="upload-document-card">
+                        <div class="upload-doc-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="upload-doc-content">
+                            <div class="upload-doc-label">Progress Report</div>
+                            <div class="upload-doc-desc">Upload task progress reports</div>
+                        </div>
+                        <input type="file" id="progressReport" hidden accept=".pdf,.doc,.docx">
+                        <button type="button" class="upload-doc-btn" onclick="document.getElementById('progressReport').click()">
+                            <i class="fas fa-upload"></i> Choose File
+                        </button>
+                        <div class="file-name-display" id="progressReportName"></div>
+                    </div>
+
+                    <div class="upload-document-card">
+                        <div class="upload-doc-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="upload-doc-content">
+                            <div class="upload-doc-label">Site Photos</div>
+                            <div class="upload-doc-desc">Upload work site photographs</div>
+                        </div>
+                        <input type="file" id="sitePhotos" hidden accept="image/*" multiple>
+                        <button type="button" class="upload-doc-btn" onclick="document.getElementById('sitePhotos').click()">
+                            <i class="fas fa-upload"></i> Choose Files
+                        </button>
+                        <div class="file-name-display" id="sitePhotosName"></div>
+                    </div>
+
+                    <div class="upload-document-card">
+                        <div class="upload-doc-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="upload-doc-content">
+                            <div class="upload-doc-label">Certificates</div>
+                            <div class="upload-doc-desc">Upload completion certificates</div>
+                        </div>
+                        <input type="file" id="certificates" hidden accept=".pdf,.jpg,.jpeg,.png">
+                        <button type="button" class="upload-doc-btn" onclick="document.getElementById('certificates').click()">
+                            <i class="fas fa-upload"></i> Choose File
+                        </button>
+                        <div class="file-name-display" id="certificatesName"></div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Update
+                    </button>
+                    <button type="reset" class="reset-btn">
+                        <i class="fas fa-redo"></i> Reset Form
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,80 @@
+<!-- admin-sidebar.component.html -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-small"><i class="fas fa-sun"></i></div>
+    <h3 class="sidebar-title">Solar OMS</h3>
+  
+  </div>
+
+  <nav class="sidebar-nav">
+    <!-- Main Section -->
+    <span class="nav-section">Main</span>
+    
+    <a routerLink="/admin-dashboard" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="nav-text">Dashboard</span>
+    </a>
+
+    <a routerLink="/admin-work-assignment" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-tasks"></i></span>
+      <span class="nav-text">Work Assignment</span>
+    </a>
+
+    <a routerLink="/admin-project-tracking" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-project-diagram"></i></span>
+      <span class="nav-text">Project Tracking</span>
+    </a>
+
+    <a routerLink="/completed-projects" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-check-circle"></i></span>
+      <span class="nav-text">Completed Projects</span>
+    </a>
+
+    <a routerLink="/service-requests-management" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-tools"></i></span>
+      <span class="nav-text">Service Requests</span>
+    </a>
+
+    <!-- Divider -->
+    <hr class="nav-divider">
+
+    <!-- Management Section -->
+    <span class="nav-section">Management</span>
+
+    <a routerLink="/employee-management" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-user-tie"></i></span>
+      <span class="nav-text">Employee</span>
+    </a>
+
+    <a routerLink="/client-management" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-users"></i></span>
+      <span class="nav-text">Client</span>
+    </a>
+
+    <a routerLink="/project-management" routerLinkActive="active" class="nav-link">
+      <span class="nav-icon"><i class="fas fa-folder-open"></i></span>
+      <span class="nav-text">Project</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="#" class="logout-link">
+      <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+      <span class="nav-text">Logout</span>
+    </a>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-content">
+    <div class="page-title-section">
+      <h1 class="page-title"> Admin Dashboard</h1>
+    </div>
+  </div>
+  
+  <div class="user-info">
+    <span class="welcome-text">Welcome, Admin</span>
+    <div class="user-avatar">A</div>
+  </div>
+</div>

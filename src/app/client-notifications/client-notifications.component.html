@@ -1,0 +1,173 @@
+<app-client-sidebar></app-client-sidebar>
+
+<div class="main-content" id="mainContent">
+    <section class="content-section active">
+        <div class="notifications-header">
+            <h3 class="panel-title">
+                <i class="fas fa-bell"></i> Project Notifications
+            </h3>
+            <div class="notification-actions">
+                <button class="action-btn mark-all-btn">
+                    <i class="fas fa-check-double"></i> Mark All as Read
+                </button>
+            </div>
+        </div>
+
+        <div class="notifications-container">
+
+            <!-- Project Started -->
+            <div class="notification-card unread">
+                <div class="notification-icon success-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-header-row">
+                        <h3 class="notification-title">Project Started</h3>
+                        <span class="unread-dot"></span>
+                    </div>
+                    <p class="notification-message">
+                        <strong>Project #1034:</strong> Your solar installation has officially started.<br>
+                        Our team is working on site preparation and equipment setup.
+                    </p>
+                    <div class="notification-meta">
+                        <span class="notification-time">
+                            <i class="far fa-clock"></i> 2 hours ago
+                        </span>
+                        <span class="notification-category success-category">
+                            <i class="fas fa-tag"></i> Project
+                        </span>
+                    </div>
+                    <div class="notification-actions-row">
+                        <button class="notif-btn secondary-btn">
+                            <i class="fas fa-check"></i> Mark as Read
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technician Assigned -->
+            <div class="notification-card unread">
+                <div class="notification-icon info-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-header-row">
+                        <h3 class="notification-title">Technician Assigned</h3>
+                        <span class="unread-dot"></span>
+                    </div>
+                    <p class="notification-message">
+                        Technician <strong>John Smith</strong> has been assigned to your project.<br>
+                        He will visit your site as per the scheduled installation date.
+                    </p>
+                    <div class="notification-meta">
+                        <span class="notification-time">
+                            <i class="far fa-clock"></i> 6 hours ago
+                        </span>
+                        <span class="notification-category info-category">
+                            <i class="fas fa-tag"></i> Assignment
+                        </span>
+                    </div>
+                    <div class="notification-actions-row">
+                        <button class="notif-btn secondary-btn">
+                            <i class="fas fa-check"></i> Mark as Read
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Installation Completed -->
+            <div class="notification-card unread">
+                <div class="notification-icon success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-header-row">
+                        <h3 class="notification-title">Installation Completed</h3>
+                        <span class="unread-dot"></span>
+                    </div>
+                    <p class="notification-message">
+                        Your solar panel installation has been successfully completed.<br>
+                        The system is now live and generating power efficiently.
+                    </p>
+                    <div class="notification-meta">
+                        <span class="notification-time">
+                            <i class="far fa-clock"></i> 1 day ago
+                        </span>
+                        <span class="notification-category success-category">
+                            <i class="fas fa-tag"></i> Completed
+                        </span>
+                    </div>
+                    <div class="notification-actions-row">
+                        <button class="notif-btn secondary-btn">
+                            <i class="fas fa-check"></i> Mark as Read
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Request Received -->
+            <div class="notification-card">
+                <div class="notification-icon info-icon">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-header-row">
+                        <h3 class="notification-title">Service Request Received</h3>
+                    </div>
+                    <p class="notification-message">
+                        We have received your maintenance request for your solar setup.<br>
+                        Our team will contact you shortly to schedule the visit.
+                    </p>
+                    <div class="notification-meta">
+                        <span class="notification-time">
+                            <i class="far fa-clock"></i> 3 days ago
+                        </span>
+                        <span class="notification-category info-category">
+                            <i class="fas fa-tag"></i> Request
+                        </span>
+                    </div>
+                    <div class="notification-actions-row">
+                        <button class="notif-btn secondary-btn">
+                            <i class="fas fa-check"></i> Mark as Read
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Completed -->
+            <div class="notification-card">
+                <div class="notification-icon success-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-header-row">
+                        <h3 class="notification-title">Service Completed</h3>
+                    </div>
+                    <p class="notification-message">
+                        Your recent service request has been successfully resolved.<br>
+                        Thank you for your cooperation.
+                    </p>
+                    <div class="notification-meta">
+                        <span class="notification-time">
+                            <i class="far fa-clock"></i> 5 days ago
+                        </span>
+                        <span class="notification-category success-category">
+                            <i class="fas fa-tag"></i> Service
+                        </span>
+                    </div>
+                    <div class="notification-actions-row">
+                        <button class="notif-btn secondary-btn">
+                            <i class="fas fa-check"></i> Mark as Read
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-state" style="display: none;">
+            <i class="fas fa-bell-slash"></i>
+            <h3>No Notifications</h3>
+            <p>You're all caught up! No new updates at the moment.</p>
+        </div>
+    </section>
+</div>
