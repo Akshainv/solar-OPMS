@@ -23,148 +23,37 @@ import { CompletedProjectsComponent } from './completed-projects/completed-proje
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { ClientServiceDetailsComponent } from './client-service-details/client-service-details.component';
 
-// Import the authGuard
-import { authGuard } from './auth.guard'; 
-
 export const routes: Routes = [
-  // Public route
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route
+  { path: 'login', component: LoginComponent },
 
-  // -------------------------
-  // ADMIN Routes (Role: 'admin')
-  // -------------------------
-  { 
-    path: 'admin-dashboard', 
-    component: AdminDashboardComponent, 
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'admin-work-assignment', 
-    component: WorkAssignmentComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'admin-project-tracking', 
-    component: ProjectTrackingComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'completed-projects', 
-    component: CompletedProjectsComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'work-progress-detail/:id', 
-    component: WorkProgressDetailComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'service-details/:id', 
-    component: ServiceDetailsComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'service-requests-management', 
-    component: ServiceRequestManagementComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'employee-management', 
-    component: EmployeeManagementComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'client-management', 
-    component: ClientManagementComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
-  { 
-    path: 'project-management', 
-    component: ProjectManagementComponent,
-    canActivate: [authGuard], 
-    data: { role: 'admin' } 
-  },
+  // Admin
+  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: 'admin-work-assignment', component: WorkAssignmentComponent },
+  { path: 'admin-project-tracking', component: ProjectTrackingComponent },
+  { path: 'completed-projects', component: CompletedProjectsComponent },
+  { path: 'work-progress-detail/:id', component: WorkProgressDetailComponent },
+  { path: 'service-details/:id', component: ServiceDetailsComponent },
+  { path: 'service-requests-management', component: ServiceRequestManagementComponent },
+  { path: 'employee-management', component: EmployeeManagementComponent },
+  { path: 'client-management', component: ClientManagementComponent },
+  { path: 'project-management', component: ProjectManagementComponent },
 
-  // -------------------------
-  // EMPLOYEE Routes (Role: 'employee')
-  // -------------------------
-  { 
-    path: 'employee-dashboard', 
-    component: EmployeeDashboardComponent,
-    canActivate: [authGuard], 
-    data: { role: 'employee' } 
-  },
-  { 
-    path: 'my-tasks', 
-    component: MyTasksComponent,
-    canActivate: [authGuard], 
-    data: { role: 'employee' } 
-  },
-  { 
-    path: 'task-updates', 
-    component: TaskUpdatesComponent,
-    canActivate: [authGuard], 
-    data: { role: 'employee' } 
-  },
-  { 
-    path: 'notifications', 
-    component: NotificationsComponent,
-    canActivate: [authGuard], 
-    data: { role: 'employee' } 
-  },
-  { 
-    path: 'view-task/:id', 
-    component: ViewTaskComponent,
-    canActivate: [authGuard], 
-    data: { role: 'employee' } 
-  },
+  // Employee
+  { path: 'employee-dashboard', component: EmployeeDashboardComponent },
+  { path: 'my-tasks', component: MyTasksComponent },
+  { path: 'task-updates', component: TaskUpdatesComponent },
+  { path: 'notifications', component: NotificationsComponent },
+  { path: 'view-task/:id', component: ViewTaskComponent },
 
-  // -------------------------
-  // CLIENT Routes (Role: 'client')
-  // -------------------------
-  { 
-    path: 'client-dashboard', 
-    component: ClientDashboardComponent,
-    canActivate: [authGuard], 
-    data: { role: 'client' } 
-  },
-  { 
-    path: 'my-projects', 
-    component: MyProjectsComponent,
-    canActivate: [authGuard], 
-    data: { role: 'client' } 
-  },
-  { 
-    path: 'client-service-details/:id', 
-    component: ClientServiceDetailsComponent,
-    canActivate: [authGuard], 
-    data: { role: 'client' } 
-  },
-  { 
-    path: 'qr-service-requests', 
-    component: QrServiceRequestsComponent,
-    canActivate: [authGuard], 
-    data: { role: 'client' } 
-  },
-  { 
-    path: 'client-notifications', 
-    component: ClientNotificationsComponent,
-    canActivate: [authGuard], 
-    data: { role: 'client' } 
-  },
-  { 
-    path: 'support-contact', 
-    component: SupportContactComponent,
-    canActivate: [authGuard], 
-    data: { role: 'client' } 
-  }
+  // Client
+  { path: 'client-dashboard', component: ClientDashboardComponent },
+  { path: 'my-projects', component: MyProjectsComponent },
+  { path: 'client-service-details/:id', component: ClientServiceDetailsComponent },
+  { path: 'qr-service-requests', component: QrServiceRequestsComponent },
+  { path: 'client-notifications', component: ClientNotificationsComponent },
+  { path: 'support-contact', component: SupportContactComponent },
+
+  // Wildcard route for 404 refresh fix
+  { path: '**', redirectTo: 'login' }
 ];
